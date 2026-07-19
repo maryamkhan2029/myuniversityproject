@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Select Courses</title>
+</head>
+
+<body>
+
+
+<h2>Available Courses</h2>
+
+
+<table border="1">
+
+<tr>
+    <th>Course</th>
+    <th>Code</th>
+    <th>Department</th>
+    <th>Action</th>
+</tr>
+
+
+{% for course in courses %}
+
+<tr>
+
+<td>
+{{course.course_title}}
+</td>
+
+<td>
+{{course.course_code}}
+</td>
+
+<td>
+{{course.department}}
+</td>
+
+
+<td>
+
+<a href="{{ url_for('select_course', course_id=course.id) }}">
+
+<button>
+Select Course
+</button>
+
+</a>
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+</table>
+
+
+<br>
+
+
+<a href="{{url_for('selected_courses')}}">
+
+<button>
+View Selected Courses
+</button>
+
+</a>
+
+
+</body>
+</html>

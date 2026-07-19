@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Assignments</title>
+
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f7fb;
+            padding:20px;
+        }
+
+        h2{
+            text-align:center;
+            color:#2563eb;
+            margin-bottom:20px;
+        }
+
+        .top-btn{
+            display:inline-block;
+            margin-bottom:20px;
+            padding:10px 15px;
+            background:#6b7280;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+
+        .top-btn:hover{
+            background:#4b5563;
+        }
+
+        .card{
+            max-width:700px;
+            margin:15px auto;
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .title{
+            font-size:20px;
+            font-weight:bold;
+            color:#111827;
+        }
+
+        .desc{
+            margin-top:10px;
+            color:#4b5563;
+        }
+
+        .due{
+            margin-top:10px;
+            font-weight:bold;
+            color:#2563eb;
+        }
+
+        .created{
+            margin-top:5px;
+            color:#6b7280;
+            font-size:14px;
+        }
+
+        .delete-btn{
+            display:inline-block;
+            margin-top:15px;
+            padding:8px 14px;
+            background:red;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+
+        .delete-btn:hover{
+            background:#b91c1c;
+        }
+
+        .empty{
+            text-align:center;
+            color:#6b7280;
+            margin-top:30px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>📋 View Assignments</h2>
+
+<a href="/teacher/assignment-panel" class="top-btn">
+    ← Back
+</a>
+
+{% for a in assignments %}
+
+<div class="card">
+
+    <div class="title">
+        {{ a['title'] }}
+    </div>
+
+    <div class="desc">
+        {{ a['description'] }}
+    </div>
+
+    <div class="due">
+        📅 Due Date: {{ a['due_date'] or 'Not Set' }}
+    </div>
+
+    <div class="created">
+        🕒 Created: {{ a['created_at'] }}
+    </div>
+
+    <a href="/teacher/delete-assignment/{{ a['id'] }}"
+       class="delete-btn"
+       onclick="return confirm('Are you sure you want to delete this assignment?')">
+       🗑 Delete
+    </a>
+
+</div>
+
+{% else %}
+
+<div class="empty">
+    No assignments found.
+</div>
+
+{% endfor %}
+
+</body>
+</html>

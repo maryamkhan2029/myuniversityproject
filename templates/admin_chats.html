@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Chat History</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#eef4ff,#f8fbff);
+    padding:35px;
+}
+
+/* HEADER */
+
+.header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:linear-gradient(135deg,#2563eb,#4f8cff);
+
+    color:white;
+
+    padding:24px 30px;
+
+    border-radius:20px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.25);
+
+}
+
+.header h2{
+
+    font-size:30px;
+    font-weight:600;
+
+}
+
+.header p{
+
+    margin-top:5px;
+    font-size:14px;
+    opacity:.9;
+
+}
+
+.back{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:rgba(255,255,255,.15);
+
+    padding:11px 20px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.back:hover{
+
+    background:white;
+    color:#2563eb;
+
+}
+
+/* CARD */
+
+.card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+/* TABLE */
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#2563eb;
+    color:white;
+
+}
+
+thead th{
+
+    padding:18px;
+
+    text-align:left;
+
+    font-size:15px;
+
+}
+
+tbody td{
+
+    padding:18px;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#fbfcff;
+
+}
+
+tbody tr:hover{
+
+    background:#eef5ff;
+
+}
+
+/* BADGES */
+
+.id{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.user{
+
+    color:#2563eb;
+
+    font-weight:500;
+
+}
+
+.bot{
+
+    color:#059669;
+
+    font-weight:500;
+
+}
+
+.time{
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+.empty{
+
+    text-align:center;
+
+    padding:35px;
+
+    color:#888;
+
+    font-size:16px;
+
+}
+
+.footer{
+
+    margin-top:20px;
+
+    text-align:right;
+
+    color:#444;
+
+    font-weight:600;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div>
+
+<h2>🤖 AI Chat History</h2>
+
+<p>University Management System</p>
+
+</div>
+
+<a href="/admin" class="back">
+
+← Back Dashboard
+
+</a>
+
+</div>
+
+<div class="card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>User Message</th>
+
+<th>AI Response</th>
+
+<th>Date & Time</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% if chats %}
+
+{% for chat in chats %}
+
+<tr>
+
+<td>
+
+<span class="id">#{{ chat[0] }}</span>
+
+</td>
+
+<td class="user">
+
+{{ chat[1] }}
+
+</td>
+
+<td class="bot">
+
+{{ chat[2] }}
+
+</td>
+
+<td class="time">
+
+{{ chat[3] }}
+
+</td>
+
+</tr>
+{% endfor %}
+
+{% else %}
+
+<tr>
+    <td colspan="4" class="empty">
+        💬 No Chat History Available
+    </td>
+</tr>
+
+{% endif %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="footer">
+    Total Conversations :
+    <strong>{{ chats|length }}</strong>
+</div>
+
+</body>
+</html>

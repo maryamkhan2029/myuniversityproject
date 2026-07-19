@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Registration</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#eef2ff,#f7f3ff,#e0ecff);
+
+    padding:40px;
+
+}
+
+.container{
+
+    width:100%;
+    max-width:900px;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    box-shadow:0 18px 45px rgba(80,90,180,.18);
+
+}
+
+.left{
+
+    width:42%;
+
+    background:linear-gradient(160deg,#8b5cf6,#6d5dfc,#5b7cff);
+
+    color:white;
+
+    padding:50px 35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.left h1{
+
+    font-size:34px;
+
+    margin-bottom:15px;
+
+}
+
+.left p{
+
+    line-height:1.8;
+
+    opacity:.95;
+
+    font-size:15px;
+
+}
+
+.badge{
+
+    margin-top:30px;
+
+    display:inline-block;
+
+    background:rgba(255,255,255,.18);
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+}
+
+.right{
+
+    width:58%;
+
+    padding:45px;
+
+}
+
+.right h2{
+
+    color:#4b4b7a;
+
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    color:#777;
+
+    margin-bottom:30px;
+
+}
+
+.form-group{
+
+    margin-bottom:18px;
+
+}
+
+label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:14px;
+
+    color:#555;
+
+    font-weight:500;
+
+}
+
+input,select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    outline:none;
+
+    transition:.3s;
+
+    font-size:14px;
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:#7c5cff;
+
+    box-shadow:0 0 0 4px rgba(124,92,255,.12);
+
+}
+.btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#7c5cff,#5b7cff);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(92,92,255,.30);
+
+}
+
+.login-link{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:#666;
+
+}
+
+.login-link a{
+
+    color:#6d5dfc;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.login-link a:hover{
+
+    text-decoration:underline;
+
+}
+
+@media(max-width:900px){
+
+.container{
+
+    flex-direction:column;
+
+}
+
+.left,
+.right{
+
+    width:100%;
+
+}
+
+.left{
+
+    text-align:center;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+
+        <h1>Teacher Portal</h1>
+
+        <p>
+            Create your faculty account to manage quizzes,
+            assignments, courses and communicate with students
+            through the University AI Assistant.
+        </p>
+
+        <div class="badge">
+            👨‍🏫 Faculty Registration
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <h2>Create Teacher Account</h2>
+        <p class="subtitle">Fill in the information below.</p>
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+                <input type="text" name="department">
+            </div>
+
+            <div class="form-group">
+                <label>Course Title</label>
+                <input type="text" name="course_title">
+            </div>
+
+            <div class="form-group">
+                <label>Course Code</label>
+                <input type="text" name="course_code">
+            </div>
+
+            <button class="btn" type="submit">
+                Register Teacher
+            </button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="/teacher/login">Login</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

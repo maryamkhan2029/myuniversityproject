@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty Directory</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#f8fafc,#eef2ff,#e0e7ff);
+}
+
+.topbar{
+    background:linear-gradient(135deg,#4f46e5,#3b82f6);
+    padding:40px 20px;
+    text-align:center;
+    color:white;
+}
+
+.topbar h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.topbar p{
+    font-size:15px;
+    opacity:.9;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    margin:auto;
+    margin-bottom:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(135deg,#4f46e5,#3b82f6);
+
+    color:white;
+    font-size:34px;
+    font-weight:700;
+}
+
+.card h3{
+    text-align:center;
+    margin-bottom:20px;
+    color:#111827;
+}
+
+.details{
+    background:#f8fafc;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+}
+
+.details p{
+    margin:12px 0;
+    color:#475569;
+    font-size:15px;
+}
+
+.btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    padding:12px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#4f46e5,#3b82f6);
+    color:white;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.empty{
+    text-align:center;
+    font-size:18px;
+    color:#6b7280;
+    padding:50px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+    <h1>Faculty Directory</h1>
+    <p>Connect with your teachers and get academic guidance</p>
+</div>
+
+<div class="container">
+
+    {% if teachers %}
+
+    <div class="grid">
+
+        {% for teacher in teachers %}
+
+        <div class="card">
+
+            <div class="avatar">
+                {{ teacher.name[0] }}
+            </div>
+
+            <h3>{{ teacher.name }}</h3>
+
+            <div class="details">
+
+                <p>
+                    📧 <strong>Email:</strong><br>
+                    {{ teacher.email }}
+                </p>
+
+                <p>
+                    🏢 <strong>Department:</strong><br>
+                    {{ teacher.department or "Not Assigned" }}
+                </p>
+
+            </div>
+
+            <a class="btn"
+               href="/student/ask-teacher/{{ teacher.id }}">
+                Ask Teacher →
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+        No teachers found.
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Profile</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#eef2f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    width:420px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+/* IMAGE PREVIEW */
+img{
+    display:block;
+    margin:0 auto 10px auto;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    border:2px solid #0072ff;
+    object-fit:cover;
+}
+
+/* INPUTS */
+input{
+    width:100%;
+    padding:10px;
+    margin:6px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+    box-sizing:border-box;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:10px;
+    background:#0072ff;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#005bd1;
+}
+
+/* BACK LINK */
+.back{
+    display:block;
+    text-align:center;
+    margin-top:10px;
+    text-decoration:none;
+    color:#0072ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>👤 My Profile</h2>
+
+    <!-- PROFILE IMAGE -->
+    <img src="{{ student['profile_photo'] if student['profile_photo'] else '/static/default.png' }}">
+<form method="POST" enctype="multipart/form-data">
+
+    <input type="text" name="name" value="{{ student['name'] }}" placeholder="Full Name" required>
+    <input type="email" name="email" value="{{ student['email'] }}" placeholder="Email" required>
+
+    <input type="text" name="cnic" value="{{ student['cnic'] or '' }}" placeholder="CNIC">
+    <input type="text" name="department" value="{{ student['department'] or '' }}" placeholder="Department">
+    <input type="text" name="semester" value="{{ student['semester'] or '' }}" placeholder="Semester">
+    <input type="text" name="enrolled_year" value="{{ student['enrolled_year'] or '' }}" placeholder="Enrolled Year">
+
+    <input type="password" name="password" value="{{ student['password'] }}" placeholder="Password" required>
+
+    <input type="file" name="profile_photo">
+
+    <button type="submit">Update Profile</button>
+</form>
+
+    <a class="back" href="/student/dashboard">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

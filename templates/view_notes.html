@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Notes</title>
+
+<style>
+body{font-family:Arial;background:#eef2f7;padding:20px;}
+
+h2{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    margin-top:10px;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📚 My Uploaded Notes</h2>
+
+{% for n in notes %}
+
+<div class="card">
+
+    <h3>{{ n[0] }}</h3>
+    <p>File uploaded successfully</p>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

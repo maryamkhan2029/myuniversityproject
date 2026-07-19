@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f4f6ff;
+            padding:20px;
+        }
+
+        h2{
+            text-align:center;
+            color:#1e3a8a;
+            margin-bottom:20px;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            margin:auto;
+            max-width:800px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th, td{
+            padding:12px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+        }
+
+        .btn{
+            padding:8px 12px;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+            color:white;
+        }
+
+        .present{
+            background:green;
+        }
+
+        .absent{
+            background:red;
+        }
+
+        .btn:hover{
+            opacity:0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>📋 Mark Attendance</h2>
+
+<div class="card">
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+
+        {% for s in students %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td>
+                <form method="POST" action="/teacher/attendance">
+                    <input type="hidden" name="student_id" value="{{ s.id }}">
+
+                    <button class="btn present" name="status" value="Present">Present</button>
+                    <button class="btn absent" name="status" value="Absent">Absent</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Complaints</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .msg {
+            margin: 10px 0;
+        }
+
+        textarea {
+            width: 100%;
+            height: 60px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .reply-btn {
+            background: green;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .back {
+            background: gray;
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .user {
+            font-weight: bold;
+        }
+
+        .old-reply {
+            margin-top: 8px;
+            color: #555;
+            background: #f1f1f1;
+            padding: 8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    📝 Student Complaints Panel
+</div>
+
+<div class="container">
+
+    <a href="/admin" class="back">⬅ Back to Dashboard</a>
+
+    <br><br>
+
+    {% for c in complaints %}
+    <div class="card">
+
+        <div class="user">👤 Student ID: {{ c[1] }}</div>
+
+        <div class="msg">
+            <b>Complaint:</b> {{ c[2] }}
+        </div>
+
+        {% if c[3] %}
+        <div class="old-reply">
+            <b>Reply:</b> {{ c[3] }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="/admin/reply/{{ c[0] }}">
+            <textarea name="reply" placeholder="Write reply..."></textarea>
+            <br>
+            <button type="submit" class="btn reply-btn">Send Reply</button>
+        </form>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

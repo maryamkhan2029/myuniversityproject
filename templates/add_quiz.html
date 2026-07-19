@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Quiz</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#f4f7fb;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(90deg,#2563eb,#1e3a8a);
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+/* CONTAINER */
+.container{
+    max-width:600px;
+    margin:30px auto;
+    padding:20px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* INPUTS */
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+}
+
+input:focus, textarea:focus{
+    border-color:#2563eb;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:12px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+/* LINK */
+a{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#2563eb;
+    text-decoration:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+    <h2>➕ Create New Quiz</h2>
+</div>
+
+<div class="container">
+
+    <div class="card">
+
+        <form method="POST" action="/teacher/add_quiz">
+
+            <input type="text" name="title" placeholder="Quiz Title" required>
+
+            <textarea name="description" placeholder="Quiz Description" required></textarea>
+
+            <input type="number" name="total_marks" placeholder="Total Marks" required>
+
+            <input type="date" name="date" required>
+
+            <button type="submit">Create Quiz</button>
+
+        </form>
+
+        <a href="/teacher/teacher_quizzes">← Back to Quizzes</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

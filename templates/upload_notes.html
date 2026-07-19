@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload Notes</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:20px;
+}
+
+h2{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    max-width:500px;
+    margin:auto;
+    margin-top:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border-radius:8px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1e40af;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>📚 Upload Notes</h2>
+
+<div class="card">
+
+    <form method="POST" action="/teacher/upload" enctype="multipart/form-data">
+
+    <input type="text" name="title" placeholder="Enter Note Title" required>
+
+    <input type="file" name="file" required>
+
+    <button type="submit">
+        Upload
+    </button>
+
+</form>
+
+</div>
+
+</body>
+</html>

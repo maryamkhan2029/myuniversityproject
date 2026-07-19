@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(135deg,#1f1c2c,#928dab);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    background:white;
+    width:500px;
+    padding:25px;
+    border-radius:15px;
+}
+
+.question{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.option{
+    display:block;
+    margin:10px 0;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.bar{
+    height:8px;
+    background:#eee;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.fill{
+    height:8px;
+    background:#6a11cb;
+    width:0%;
+    border-radius:10px;
+}
+
+button{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#6a11cb;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="bar"><div class="fill" id="fill"></div></div>
+
+<form method="POST" action="/submit" id="quizForm">
+
+<div id="box"></div>
+
+<button type="button" onclick="prev()">Previous</button>
+<button type="button" onclick="next()">Next</button>
+<button type="button" onclick="submitQuiz()">Submit Quiz</button>
+
+</form>
+
+</div>
+
+<script>
+
+let questions = {{ questions | default([]) | tojson }};
+
+let i = 0;
+let answers = {};
+
+function show(){
+
+    if(questions.length === 0){
+        document.getElementById("box").innerHTML = "<h3>No Questions Found</h3>";
+        return;
+    }
+
+    let q = questions[i];
+    let selected = answers[q.id] || "";
+
+    document.getElementById("box").innerHTML = `
+        <div class="question">${q.question}</div>
+
+        <label class="option">
+            <input type="radio" name="${q.id}" value="${q.a}"
+            ${selected === q.a ? "checked" : ""}
+            onchange="save('${q.id}','${q.a}')">
+            ${q.a}
+        </label>
+
+        <label class="option">
+            <input type="radio" name="${q.id}" value="${q.b}"
+            ${selected === q.b ? "checked" : ""}
+            onchange="save('${q.id}','${q.b}')">
+            ${q.b}
+        </label>
+
+        <label class="option">
+            <input type="radio" name="${q.id}" value="${q.c}"
+            ${selected === q.c ? "checked" : ""}
+            onchange="save('${q.id}','${q.c}')">
+            ${q.c}
+        </label>
+
+        <label class="option">
+            <input type="radio" name="${q.id}" value="${q.d}"
+            ${selected === q.d ? "checked" : ""}
+            onchange="save('${q.id}','${q.d}')">
+            ${q.d}
+        </label>
+    `;
+
+    update();
+}
+
+function next(){
+    if(i < questions.length - 1){
+        i++;
+        show();
+    }
+}
+
+function prev(){
+    if(i > 0){
+        i--;
+        show();
+    }
+}
+
+function save(id,val){
+    answers[id] = val;
+}
+
+function update(){
+    let percent = ((i+1)/questions.length)*100;
+    document.getElementById("fill").style.width = percent + "%";
+}
+
+function submitQuiz(){
+
+    if(Object.keys(answers).length < questions.length){
+        if(!confirm("⚠️ Not all questions answered. Submit anyway?")){
+            return;
+        }
+    }
+
+    let form = document.getElementById("quizForm");
+
+    document.querySelectorAll(".hidden").forEach(e => e.remove());
+
+    for(let id in answers){
+        let input = document.createElement("input");
+        input.type = "hidden";
+        input.name = id;
+        input.value = answers[id];
+        input.classList.add("hidden");
+        form.appendChild(input);
+    }
+
+    form.submit();
+}
+
+show();
+
+</script>
+
+</body>
+</html>

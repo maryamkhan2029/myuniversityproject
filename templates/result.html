@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz Result</title>
+
+<style>
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    font-family:Arial;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* CARD + ANIMATION */
+.card{
+    background:white;
+    padding:30px;
+    width:500px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+/* STATS */
+.stat{
+    margin:10px 0;
+    background:#f4f4f4;
+    padding:10px;
+    border-radius:10px;
+}
+
+/* STATUS */
+.pass{
+    color:green;
+    font-size:24px;
+    font-weight:bold;
+    text-shadow:0 0 10px rgba(0,255,0,0.3);
+}
+
+.fail{
+    color:red;
+    font-size:24px;
+    font-weight:bold;
+    text-shadow:0 0 10px rgba(255,0,0,0.3);
+}
+
+/* BUTTONS */
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 20px;
+    color:white;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    opacity:0.9;
+}
+
+.blue{ background:#4f46e5; }
+.red{ background:red; }
+.green{ background:green; }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>🎉 Quiz Result</h2>
+
+    <!-- SCORE -->
+    <div class="stat">Score: {{ score }}/{{ total }}</div>
+    <div class="stat">Wrong: {{ wrong }}</div>
+    <div class="stat">Percentage: {{ percentage }}%</div>
+
+    <!-- REMARKS -->
+    <div class="stat"><b>Remarks:</b> {{ remarks }}</div>
+
+    <div class="stat"><b>Status:</b> {{ status }}</div>
+
+    {% if status == "PASS" %}
+        <div class="pass">🏆 PASS</div>
+    {% else %}
+        <div class="fail">❌ FAIL</div>
+    {% endif %}
+
+    <!-- BUTTONS -->
+    <a href="/student/quiz" class="btn blue">🔄 Retry Quiz</a>
+    <a href="/student/logout" class="btn red">🚪 Logout</a>
+
+</div>
+
+</body>
+</html>

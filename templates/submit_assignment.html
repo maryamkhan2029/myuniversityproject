@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Submit Assignment</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f4f7fb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    width:350px;
+    text-align:center;
+}
+
+input[type="file"]{
+    margin:15px 0;
+}
+
+button{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>📤 Submit Assignment</h2>
+
+    <form action="/student/submit-assignment/1" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="title" value="Assignment">
+
+        <input type="file" name="file" required>
+
+        <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

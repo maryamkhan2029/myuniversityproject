@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Selected Courses</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+
+body{
+
+    background:#f4f7fb;
+
+}
+
+
+
+.container{
+
+    width:90%;
+    max-width:1000px;
+    margin:40px auto;
+
+}
+
+
+
+.header{
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:25px;
+
+}
+
+
+.header h1{
+
+    font-size:28px;
+
+}
+
+
+.course-box{
+
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+
+}
+
+
+
+th{
+
+    background:#2563eb;
+    color:white;
+    padding:15px;
+    text-align:left;
+
+}
+
+
+
+td{
+
+    padding:15px;
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+
+
+tr:hover{
+
+    background:#f1f5ff;
+
+}
+
+
+
+.code{
+
+    color:#2563eb;
+    font-weight:bold;
+
+}
+
+
+
+.credit{
+
+    color:#16a34a;
+    font-weight:bold;
+
+}
+
+
+
+.back{
+
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 25px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+
+}
+
+
+
+.back:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<h1>
+📚 My Selected Courses
+</h1>
+
+<p>
+Courses you have enrolled in
+</p>
+
+</div>
+
+
+
+<div class="course-box">
+
+
+<table>
+
+
+<tr>
+
+<th>
+Course Name
+</th>
+
+
+<th>
+Course Code
+</th>
+
+
+<th>
+Credit Hours
+</th>
+
+
+</tr>
+
+
+
+{% for course in courses %}
+
+
+<tr>
+
+
+<td>
+{{course.course_title}}
+</td>
+
+
+
+<td class="code">
+
+{{course.course_code}}
+
+</td>
+
+
+
+<td class="credit">
+
+{{course.credit_hours}}
+
+</td>
+
+
+
+</tr>
+
+
+
+{% else %}
+
+
+<tr>
+
+<td colspan="3">
+
+No Course Selected
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+<a href="/student/course-selection" class="back">
+
+⬅ Back to Course Selection
+
+</a>
+
+
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

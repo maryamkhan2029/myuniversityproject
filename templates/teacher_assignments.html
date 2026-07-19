@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Assignments</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            background:#f4f7fb;
+            padding:20px;
+        }
+
+        h2{
+            text-align:center;
+            color:#2563eb;
+            margin-bottom:20px;
+        }
+
+        .top-bar{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        .top-bar a{
+            display:inline-block;
+            margin:5px;
+            padding:10px 15px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+            font-weight:bold;
+        }
+
+        .top-bar a:hover{
+            background:#1d4ed8;
+        }
+
+        .card{
+            max-width:700px;
+            margin:15px auto;
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .title{
+            font-size:20px;
+            font-weight:bold;
+            color:#111827;
+        }
+
+        .desc{
+            margin-top:10px;
+            color:#4b5563;
+        }
+
+        .meta{
+            margin-top:10px;
+            color:#6b7280;
+            font-size:14px;
+        }
+
+        .due{
+            margin-top:5px;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        .delete-btn{
+            display:inline-block;
+            margin-top:15px;
+            padding:8px 14px;
+            background:red;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+            font-weight:bold;
+        }
+
+        .delete-btn:hover{
+            background:#b91c1c;
+        }
+
+        .empty{
+            text-align:center;
+            color:#6b7280;
+            margin-top:30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>📋 Teacher Assignments</h2>
+
+<!-- TOP BUTTONS -->
+<div class="top-bar">
+    <a href="/teacher/create-assignment">➕ Create</a>
+    <a href="/teacher/student-assignments">👨‍🎓 Students</a>
+</div>
+
+{% if assignments %}
+
+    {% for a in assignments %}
+
+    <div class="card">
+
+        <div class="title">
+            {{ a['title'] }}
+        </div>
+
+        <div class="desc">
+            {{ a['description'] }}
+        </div>
+
+        <div class="due">
+            📅 Due Date: {{ a['due_date'] or 'Not Set' }}
+        </div>
+
+        <div class="meta">
+            🕒 Created: {{ a['created_at'] }}
+        </div>
+
+        <a href="/teacher/delete-assignment/{{ a['id'] }}"
+           onclick="return confirm('Are you sure you want to delete this assignment?')"
+           class="delete-btn">
+            🗑 Delete
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div class="empty">
+        No assignments found.
+    </div>
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complaint System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#f8fafc,#eef2ff,#e0e7ff);
+}
+
+.header{
+    background:linear-gradient(135deg,#4f46e5,#3b82f6);
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.header h2{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.header p{
+    opacity:.9;
+}
+
+.menu{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.menu button{
+    border:none;
+    padding:12px 22px;
+    border-radius:12px;
+    cursor:pointer;
+    background:white;
+    color:#4f46e5;
+    font-weight:600;
+}
+
+.container{
+    max-width:1000px;
+    margin:30px auto;
+    padding:0 20px;
+}
+
+.box{
+    display:none;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.active{
+    display:block;
+}
+
+textarea{
+    width:100%;
+    height:150px;
+    resize:none;
+    padding:15px;
+    border:2px solid #e5e7eb;
+    border-radius:14px;
+}
+
+.submit{
+    margin-top:15px;
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#4f46e5,#3b82f6);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.card{
+    background:#f8fafc;
+    border-left:5px solid #4f46e5;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+.reply{
+    background:#dcfce7;
+    color:#166534;
+    padding:12px;
+    border-radius:12px;
+    margin-top:12px;
+}
+
+.pending{
+    color:#d97706;
+    margin-top:12px;
+    font-weight:600;
+}
+
+.date{
+    display:block;
+    margin-top:12px;
+    color:#64748b;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h2>📩 Complaint Center</h2>
+
+    <p>
+        Roll No:
+        <strong>{{ session.get("student_roll","Not Available") }}</strong>
+    </p>
+
+    <div class="menu">
+        <button onclick="showBox('submit')">➕ New Complaint</button>
+        <button onclick="showBox('list')">📋 My Complaints</button>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <!-- Submit Complaint -->
+    <div id="submit" class="box active">
+
+        <h3>Submit Complaint</h3>
+
+        <form method="POST" action="/student/complaint">
+
+            <textarea
+                name="message"
+                placeholder="Describe your issue..."
+                required></textarea>
+
+            <button class="submit" type="submit">
+                Send Complaint
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Complaint List -->
+    <div id="list" class="box">
+
+        <h3>My Complaints</h3>
+
+        {% for c in complaints %}
+
+        <div class="card">
+
+            <p>
+                <strong>Complaint:</strong>
+                {{ c[3] }}
+            </p>
+
+            {% if c[4] and c[4]|trim != '' %}
+                <div class="reply">
+                    <strong>Admin Reply:</strong><br>
+                    {{ c[4] }}
+                </div>
+            {% else %}
+                <div class="pending">
+                    ⏳ Waiting for Admin Reply
+                </div>
+            {% endif %}
+
+            <span class="date">
+                📅 {{ c[5] }}
+            </span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script>
+function showBox(id){
+
+    document.getElementById("submit").classList.remove("active");
+    document.getElementById("list").classList.remove("active");
+
+    document.getElementById(id).classList.add("active");
+}
+</script>
+
+</body>
+</html>

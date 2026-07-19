@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body style="font-family:Arial;">
+
+    <h2>📊 Student Dashboard</h2>
+
+    <ul>
+        <li><a href="/">🏠 Home Chat</a></li>
+        <li><a href="#" onclick="openAgent('admission')">🎓 Admission Agent</a></li>
+        <li><a href="#" onclick="openAgent('course')">📚 Course Advisor Agent</a></li>
+        <li><a href="#" onclick="openAgent('fee')">💰 Fee Info</a></li>
+    </ul>
+
+    <div id="output" style="margin-top:20px;"></div>
+
+    <script>
+    function openAgent(type) {
+        let query = "";
+
+        if(type === "admission") query = "admission kya hai";
+        if(type === "course") query = "BSCS courses";
+        if(type === "fee") query = "semester fee kitni hai";
+
+        fetch("/chat", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({query: query})
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("output").innerHTML =
+                "<b>Response:</b><br>" + data.response;
+        });
+    }
+    </script>
+
+</body>
+</html>

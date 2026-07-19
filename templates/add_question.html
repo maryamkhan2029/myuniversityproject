@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Question</title>
+</head>
+<body>
+
+<h2>Add MCQ Question</h2>
+
+<form method="POST">
+
+    <!-- 🔥 THIS IS REQUIRED -->
+    <input type="hidden" name="quiz_id" value="{{ quiz_id }}">
+
+    <input type="text" name="question" placeholder="Question" required><br><br>
+
+    <input type="text" name="option_a" placeholder="Option A" required><br><br>
+    <input type="text" name="option_b" placeholder="Option B" required><br><br>
+    <input type="text" name="option_c" placeholder="Option C"><br><br>
+    <input type="text" name="option_d" placeholder="Option D"><br><br>
+
+    <input type="text" name="correct_answer" placeholder="Correct Answer" required><br><br>
+
+    <button type="submit">Save Question</button>
+
+</form>
+
+</body>
+</html>

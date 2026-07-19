@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Quiz Panel</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .top-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .quiz-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .quiz-type {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+
+        .edit {
+            color: green;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .delete {
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .edit:hover, .delete:hover {
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h2>📘 Teacher Quiz Panel</h2>
+
+<div class="top-bar">
+    <a class="btn" href="/teacher/create-quiz/mcq">➕ MCQ Quiz</a>
+    <a class="btn" href="/teacher/create-quiz/descriptive">📝 Descriptive Quiz</a>
+</div>
+
+<div class="container">
+
+    {% for quiz in quizzes %}
+
+    <div class="quiz-card">
+
+        <div class="quiz-title">
+            {{ quiz[1] }}
+        </div>
+
+        <div class="quiz-type">
+            Type: {{ quiz[2] }}
+        </div>
+
+        <div class="actions">
+            <a class="edit" href="/teacher/edit-quiz/{{ quiz[0] }}">✏ Edit</a>
+            <a class="delete" href="/teacher/delete-quiz/{{ quiz[0] }}" onclick="return confirm('Delete this quiz?')">🗑 Delete</a>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

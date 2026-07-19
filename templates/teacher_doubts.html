@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Doubts</title>
+
+<style>
+body{
+    font-family:Segoe UI;
+    background:#f4f7fb;
+}
+
+.box{
+    max-width:800px;
+    margin:40px auto;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:10px;
+}
+
+textarea{
+    width:100%;
+    margin-top:10px;
+    padding:8px;
+}
+
+button{
+    margin-top:8px;
+    padding:8px 12px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>💬 Student Doubts</h2>
+
+    {% for d in doubts %}
+
+    <div class="card">
+        <p><b>Student:</b> {{ d['student_name'] }}</p>
+        <p><b>Question:</b> {{ d['question'] }}</p>
+
+        {% if d['reply'] %}
+            <p style="color:green;"><b>Reply:</b> {{ d['reply'] }}</p>
+        {% else %}
+            <form method="POST" action="/teacher/reply-doubt/{{ d['id'] }}">
+                <textarea name="reply" placeholder="Write reply..." required></textarea>
+                <button type="submit">Send Reply</button>
+            </form>
+        {% endif %}
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

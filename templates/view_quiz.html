@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz Questions</title>
+
+<style>
+    body{
+        font-family: Arial;
+        background:#f4f6f9;
+        padding:20px;
+    }
+
+    .box{
+        border:1px solid #ccc;
+        padding:15px;
+        margin:10px 0;
+        background:white;
+        border-radius:8px;
+    }
+
+    .btn{
+        display:inline-block;
+        padding:6px 10px;
+        margin-top:10px;
+        border-radius:5px;
+        text-decoration:none;
+        font-size:14px;
+    }
+
+    .edit{
+        background:green;
+        color:white;
+    }
+
+    .delete{
+        background:red;
+        color:white;
+    }
+
+    .answer{
+        color:green;
+        font-weight:bold;
+    }
+</style>
+
+</head>
+<body>
+
+<h2>📘 Quiz Questions</h2>
+
+{% for q in questions %}
+
+<div class="box">
+
+    <h3>{{ q['question'] }}</h3>
+
+    {% if q['option_a'] %}
+
+        <p>A: {{ q['option_a'] }}</p>
+        <p>B: {{ q['option_b'] }}</p>
+        <p>C: {{ q['option_c'] }}</p>
+        <p>D: {{ q['option_d'] }}</p>
+
+        <p class="answer">Correct: {{ q['correct_answer'] }}</p>
+
+    {% else %}
+
+        <p style="color:gray;">📝 Descriptive Question</p>
+
+    {% endif %}
+
+    <!-- ✅ EDIT QUESTION -->
+    <a class="btn edit"
+       href="/teacher/edit-question/{{ q['id'] }}">
+       Edit
+    </a>
+
+    <!-- ❌ DELETE QUESTION -->
+    <a class="btn delete"
+       href="/teacher/delete-question/{{ q['id'] }}/{{ quiz_id }}">
+       Delete
+    </a>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

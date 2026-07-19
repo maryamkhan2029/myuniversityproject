@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chats</title>
+<style>
+body{font-family:Arial;background:#f4f6f9;padding:20px;}
+.card{background:white;padding:10px;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<h2>💬 Chats</h2>
+
+{% for c in chats %}
+<div class="card">
+    <p>{{ c[4] }}</p>
+</div>
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Announcements</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#eef2f7;
+    margin:0;
+    padding:20px;
+}
+
+/* Header */
+h2{
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    padding:18px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+/* Card Design */
+.card{
+    background:white;
+    padding:18px;
+    margin-bottom:12px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    border-left:5px solid #2563eb;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+/* Title */
+.card h3{
+    margin:0;
+    color:#1e293b;
+    margin-bottom:8px;
+}
+
+/* Message */
+.card p{
+    margin:0;
+    color:#475569;
+    line-height:1.6;
+}
+
+/* Empty box */
+.empty{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    color:#64748b;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>📢 Teacher Announcements</h2>
+
+<!-- ❌ FORM REMOVED (teacher cannot post) -->
+
+{% if announcements %}
+
+    {% for a in announcements %}
+    <div class="card">
+        <!-- a[0] = title -->
+        <!-- a[1] = message -->
+
+        <h3>{{ a[0] }}</h3>
+        <p>{{ a[1] }}</p>
+    </div>
+    {% endfor %}
+
+{% else %}
+
+<div class="empty">
+    No announcements available right now.
+</div>
+
+{% endif %}
+
+</body>
+</html>

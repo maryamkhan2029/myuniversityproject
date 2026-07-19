@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create MCQ Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 12px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row input {
+            flex: 1;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .section-title {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Create MCQ Quiz</h2>
+
+    <form method="POST" action="/teacher/save-mcq">
+
+        <label>Quiz Title</label>
+        <input type="text" name="title" required>
+
+        <label>Question</label>
+        <input type="text" name="question" required>
+
+        <div class="section-title">Options</div>
+
+        <div class="row">
+            <input type="text" name="option_a" placeholder="Option A">
+            <input type="text" name="option_b" placeholder="Option B">
+        </div>
+
+        <br>
+
+        <div class="row">
+            <input type="text" name="option_c" placeholder="Option C">
+            <input type="text" name="option_d" placeholder="Option D">
+        </div>
+
+        <label>Correct Answer</label>
+        <input type="text" name="correct_answer" placeholder="e.g. A / B / C / D or full answer">
+
+        <button type="submit">Create MCQ Quiz</button>
+
+    </form>
+
+    <a class="back" href="/teacher/quizzes">← Back to Quizzes</a>
+
+</div>
+
+</body>
+</html>

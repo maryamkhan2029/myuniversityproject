@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Assistant</title>
+</head>
+<body>
+
+<h2>AI Chat</h2>
+
+<input id="query" type="text" placeholder="Ask...">
+<button onclick="send()">Send</button>
+
+<div id="chat"></div>
+
+<script>
+function send() {
+    let query = document.getElementById("query").value;
+
+    console.log("Sending:", query);
+
+    fetch("http://127.0.0.1:5000/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({query: query})
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("chat").innerHTML +=
+            "<b>You:</b> " + query + "<br>" +
+            "<b>AI:</b> " + data.response + "<br><br>";
+    })
+    .catch(err => {
+        console.log("ERROR:", err);
+    });
+}
+</script>
+
+</body>
+</html>

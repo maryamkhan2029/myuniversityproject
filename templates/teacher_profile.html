@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Teacher Profile</title>
+
+```
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    padding:30px;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+h2{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:25px;
+}
+
+/* Profile Info */
+.profile-info{
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:25px;
+}
+
+.profile-info h3{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.profile-info p{
+    margin:10px 0;
+    color:#374151;
+    font-size:15px;
+}
+
+.field{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:600;
+    color:#374151;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+}
+
+input:focus{
+    border-color:#2563eb;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+    <h2>👨‍🏫 Teacher Profile</h2>
+
+    <!-- Current Information -->
+
+    <div class="profile-info">
+
+        <h3>Current Information</h3>
+
+        <p><strong>Name:</strong> {{ teacher.name }}</p>
+
+        <p><strong>Email:</strong> {{ teacher.email }}</p>
+
+        <p><strong>Course Title:</strong>
+            {{ teacher.course_title or "Not Set" }}
+        </p>
+
+        <p><strong>Course Code:</strong>
+            {{ teacher.course_code or "Not Set" }}
+        </p>
+
+        <p><strong>Department:</strong>
+            {{ teacher.department or "Not Set" }}
+        </p>
+
+    </div>
+
+    <!-- Update Form -->
+
+    <form method="POST">
+
+        <div class="field">
+            <label>Name</label>
+            <input type="text"
+                   name="name"
+                   value="{{ teacher.name }}"
+                   required>
+        </div>
+
+        <div class="field">
+            <label>Email</label>
+            <input type="email"
+                   name="email"
+                   value="{{ teacher.email }}"
+                   required>
+        </div>
+
+        <div class="field">
+            <label>Course Title</label>
+            <input type="text"
+                   name="course_title"
+                   value="{{ teacher.course_title or '' }}">
+        </div>
+
+        <div class="field">
+            <label>Course Code</label>
+            <input type="text"
+                   name="course_code"
+                   value="{{ teacher.course_code or '' }}">
+        </div>
+
+        <div class="field">
+            <label>Department</label>
+            <input type="text"
+                   name="department"
+                   value="{{ teacher.department or '' }}">
+        </div>
+
+        <button type="submit">
+            Update Profile
+        </button>
+
+    </form>
+
+</div>
+
+
+</div>
+
+</body>
+</html>

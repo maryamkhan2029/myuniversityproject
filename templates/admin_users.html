@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registered Students</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#edf3ff,#f8fbff);
+    padding:35px;
+}
+
+/* Header */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(135deg,#1f4fd8,#5d7dff);
+    color:#fff;
+    padding:25px 35px;
+    border-radius:22px;
+    margin-bottom:30px;
+    box-shadow:0 15px 35px rgba(31,79,216,.25);
+}
+
+.header h2{
+    font-size:30px;
+    font-weight:600;
+}
+
+.header p{
+    margin-top:6px;
+    font-size:14px;
+    opacity:.9;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:rgba(255,255,255,.15);
+    padding:12px 22px;
+    border-radius:12px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:white;
+    color:#1f4fd8;
+    transform:translateY(-2px);
+}
+
+/* Card */
+
+.card{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    border:1px solid #edf1f7;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#1f4fd8;
+    color:white;
+}
+
+thead th{
+    padding:18px;
+    text-align:left;
+    font-size:15px;
+    letter-spacing:.4px;
+}
+
+tbody td{
+    padding:18px;
+    border-bottom:1px solid #edf1f7;
+    color:#444;
+}
+
+tbody tr:nth-child(even){
+    background:#fbfcff;
+}
+
+tbody tr:hover{
+    background:#eef5ff;
+    transition:.3s;
+}
+
+/* Badges */
+
+.id{
+    display:inline-block;
+    background:#dbeafe;
+    color:#2563eb;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.roll{
+    display:inline-block;
+    background:#dcfce7;
+    color:#15803d;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.email{
+    color:#2563eb;
+    font-weight:500;
+}
+
+.footer{
+    margin-top:20px;
+    text-align:right;
+    color:#444;
+    font-size:15px;
+    font-weight:600;
+}
+
+.empty{
+    text-align:center;
+    padding:35px;
+    color:#888;
+    font-size:16px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<div>
+<h2>👥 Registered Students</h2>
+<p>University Management System</p>
+</div>
+
+<a href="/admin" class="back-btn">
+← Back Dashboard
+</a>
+
+</div>
+
+<div class="card">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email Address</th>
+    <th>Roll Number</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% if users %}
+
+{% for user in users %}
+
+<tr>
+
+<td>
+<span class="id">#{{ user[0] }}</span>
+</td>
+
+<td>{{ user[1] }}</td>
+
+<td class="email">{{ user[2] }}</td>
+
+<td>
+<span class="roll">{{ user[9] }}</span>
+</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+    <td colspan="4" class="empty">
+        📂 No Registered Students Found
+    </td>
+</tr>
+
+{% endif %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="footer">
+    Total Registered Students :
+    <strong>{{ users|length }}</strong>
+</div>
+
+</body>
+</html>

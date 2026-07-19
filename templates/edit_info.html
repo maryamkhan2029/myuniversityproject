@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Announcement</title>
+</head>
+<body>
+
+<h2>✏️ Edit Announcement</h2>
+
+<form method="POST">
+
+    <input type="text" name="title" value="{{ info[1] }}" required><br><br>
+
+    <textarea name="message" required>{{ info[2] }}</textarea><br><br>
+
+    <select name="category">
+
+        <option value="exam" {% if info[3]=='exam' %}selected{% endif %}>Exam</option>
+        <option value="result" {% if info[3]=='result' %}selected{% endif %}>Result</option>
+        <option value="timetable" {% if info[3]=='timetable' %}selected{% endif %}>Timetable</option>
+        <option value="admission" {% if info[3]=='admission' %}selected{% endif %}>Admission</option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">💾 Update</button>
+
+</form>
+
+</body>
+</html>

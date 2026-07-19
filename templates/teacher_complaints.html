@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Complaints (Doubts)</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            background:#f3f6ff;
+            padding:20px;
+        }
+
+        h2{
+            text-align:center;
+            color:#1e3a8a;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            margin:15px auto;
+            max-width:600px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        textarea{
+            width:100%;
+            margin-top:10px;
+            padding:10px;
+            border-radius:8px;
+            border:1px solid #ccc;
+        }
+
+        button{
+            margin-top:10px;
+            padding:10px 15px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#1e40af;
+        }
+
+        .reply{
+            margin-top:10px;
+            padding:10px;
+            background:#ecfdf5;
+            border-left:4px solid #10b981;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>💬 Student Doubts</h2>
+
+{% for d in doubts %}
+
+<div class="card">
+
+    <p><b>Student:</b> {{ d.student_name }}</p>
+
+    <p><b>Question:</b> {{ d.question }}</p>
+
+    {% if d.reply %}
+        <div class="reply">
+            ✅ Reply: {{ d.reply }}
+        </div>
+    {% else %}
+        <form action="/teacher/reply-doubt/{{ d.id }}" method="POST">
+
+            <textarea name="reply" placeholder="Write reply..." required></textarea>
+
+            <button type="submit">Send Reply</button>
+
+        </form>
+    {% endif %}
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

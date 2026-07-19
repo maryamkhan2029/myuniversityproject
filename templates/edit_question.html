@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Question</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f4f6f9;
+            padding:20px;
+        }
+
+        .box{
+            background:white;
+            padding:20px;
+            width:600px;
+            margin:auto;
+            margin-top:30px;
+            border-radius:10px;
+        }
+
+        input, textarea{
+            width:100%;
+            padding:10px;
+            margin-top:8px;
+            margin-bottom:10px;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            background:green;
+            color:white;
+            border:none;
+        }
+
+        .section{
+            margin-top:15px;
+            padding:10px;
+            border:1px solid #ddd;
+            border-radius:8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Edit Question</h2>
+
+    <form method="POST">
+
+        <label>Question</label>
+        <textarea name="question">{{ question['question'] }}</textarea>
+
+        <!-- MCQ SECTION (ONLY SHOW IF MCQ) -->
+        {% if question['option_a'] %}
+
+        <div class="section">
+            <h4>MCQ Options</h4>
+
+            <input type="text" name="option_a" value="{{ question['option_a'] }}" placeholder="Option A">
+            <input type="text" name="option_b" value="{{ question['option_b'] }}" placeholder="Option B">
+            <input type="text" name="option_c" value="{{ question['option_c'] }}" placeholder="Option C">
+            <input type="text" name="option_d" value="{{ question['option_d'] }}" placeholder="Option D">
+
+            <input type="text" name="correct_answer" value="{{ question['correct_answer'] }}" placeholder="Correct Answer">
+        </div>
+
+        {% else %}
+
+        <p style="color:gray;">This is a Descriptive Question</p>
+
+        {% endif %}
+
+        <button type="submit">Update Question</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

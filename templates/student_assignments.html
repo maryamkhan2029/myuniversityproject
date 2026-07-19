@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Submissions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#f8fafc,#eef2ff,#e0e7ff);
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#4f46e5,#3b82f6);
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.header h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.header p{
+    opacity:.9;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1000px;
+    margin:30px auto;
+    padding:0 20px;
+}
+
+/* BACK BUTTON */
+.back{
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 18px;
+    background:white;
+    color:#4f46e5;
+    text-decoration:none;
+    border-radius:12px;
+    font-weight:600;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.back:hover{
+    transform:translateY(-2px);
+}
+
+/* CARD */
+.card{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    transition:.3s;
+    border-left:5px solid #4f46e5;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.name{
+    font-size:20px;
+    font-weight:600;
+    color:#111827;
+    margin-bottom:10px;
+}
+
+.info{
+    color:#64748b;
+    margin-top:8px;
+    font-size:14px;
+}
+
+/* DOWNLOAD BUTTON */
+.download{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 16px;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(135deg,#4f46e5,#3b82f6);
+    font-weight:600;
+}
+
+.download:hover{
+    opacity:.95;
+}
+
+/* EMPTY */
+.empty{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    color:#64748b;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+.header h1{
+    font-size:26px;
+}
+
+.container{
+    padding:0 15px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>👨‍🎓 Student Submissions</h1>
+    <p>View submitted assignments from students</p>
+</div>
+
+<div class="container">
+
+    <a href="/teacher/assignments" class="back">
+        ← Back to Assignments
+    </a>
+
+    {% if submissions %}
+
+        {% for s in submissions %}
+
+        <div class="card">
+
+            <div class="name">
+                👤 {{ s.name }}
+            </div>
+
+            <div class="info">
+                🎓 Roll No:
+                {{ s.roll_no or "N/A" }}
+            </div>
+
+            <div class="info">
+                🕒 Submitted At:
+                {{ s.submitted_at or "N/A" }}
+            </div>
+
+            {% if s.file_path %}
+                <a href="/{{ s.file_path }}"
+                   target="_blank"
+                   class="download">
+                    📥 Download Assignment
+                </a>
+            {% else %}
+                <div class="info">
+                    No file uploaded
+                </div>
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+            No submissions found.
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

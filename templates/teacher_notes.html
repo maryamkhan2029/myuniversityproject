@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Notes</title>
+<style>
+body{font-family:Arial;background:#f4f6f9;padding:20px;}
+</style>
+</head>
+<body>
+
+<h2>📚 Upload Notes</h2>
+
+<form method="POST" action="/teacher/upload_notes" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title">
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+</form>
+
+<hr>
+
+{% for n in notes %}
+<p>{{ n[1] }} - {{ n[2] }}</p>
+{% endfor %}
+
+</body>
+</html>

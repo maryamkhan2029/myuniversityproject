@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Quiz</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f4f6f9;
+            padding:20px;
+        }
+
+        .box{
+            background:white;
+            padding:15px;
+            margin-bottom:15px;
+            border-radius:8px;
+            border:1px solid #ddd;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+        }
+
+        button{
+            padding:10px;
+            background:green;
+            color:white;
+            border:none;
+            margin-top:10px;
+            cursor:pointer;
+        }
+
+        .question-box{
+            border:1px solid #ccc;
+            padding:12px;
+            margin-top:10px;
+            border-radius:8px;
+            background:#fafafa;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:6px 10px;
+            margin-top:8px;
+            text-decoration:none;
+            border-radius:5px;
+            font-size:13px;
+        }
+
+        .edit{
+            background:#28a745;
+            color:white;
+        }
+
+        .delete{
+            background:#dc3545;
+            color:white;
+        }
+
+        .answer{
+            color:green;
+            font-weight:bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Edit Quiz</h2>
+
+<!-- QUIZ TITLE -->
+<div class="box">
+
+    <form method="POST">
+
+        <label>Quiz Title</label>
+        <input type="text" name="title" value="{{ quiz['title'] }}">
+
+        <button type="submit">Update Quiz</button>
+
+    </form>
+
+</div>
+
+<!-- QUESTIONS -->
+<div class="box">
+
+    <h3>Questions</h3>
+
+    {% for q in questions %}
+
+    <div class="question-box">
+
+        <p><b>{{ q['question'] }}</b></p>
+
+        {% if q['option_a'] %}
+
+            <p>A: {{ q['option_a'] }}</p>
+            <p>B: {{ q['option_b'] }}</p>
+            <p>C: {{ q['option_c'] }}</p>
+            <p>D: {{ q['option_d'] }}</p>
+
+            <p class="answer">Correct: {{ q['correct_answer'] }}</p>
+
+        {% else %}
+
+            <p style="color:gray;">📝 Descriptive Question</p>
+
+        {% endif %}
+
+        <!-- ✅ EDIT BUTTON -->
+        <a class="btn edit"
+           href="/teacher/edit-question/{{ q['id'] }}">
+           Edit
+        </a>
+
+        <!-- ❌ FIXED DELETE BUTTON -->
+        <a class="btn delete"
+           href="/teacher/delete-question/{{ q['id'] }}">
+           Delete
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Assignment</title>
+
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f7fb;
+            padding:20px;
+        }
+
+        .container{
+            max-width:600px;
+            margin:auto;
+        }
+
+        .box{
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            text-align:center;
+            color:#2563eb;
+            margin-bottom:20px;
+        }
+
+        label{
+            font-weight:bold;
+            display:block;
+            margin-top:10px;
+        }
+
+        input, textarea{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            box-sizing:border-box;
+        }
+
+        textarea{
+            resize:vertical;
+        }
+
+        button{
+            width:100%;
+            margin-top:20px;
+            padding:12px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:16px;
+            font-weight:bold;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-bottom:15px;
+            text-decoration:none;
+            color:white;
+            background:#6b7280;
+            padding:8px 12px;
+            border-radius:8px;
+        }
+
+        .back-btn:hover{
+            background:#4b5563;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a href="/teacher/assignment-panel" class="back-btn">
+        ← Back
+    </a>
+
+    <div class="box">
+
+        <h2>📝 Create Assignment</h2>
+
+        <form method="POST">
+
+            <label>Assignment Title</label>
+            <input type="text" name="title" required>
+
+            <label>Description</label>
+            <textarea name="description" rows="5" required></textarea>
+
+            <label>Due Date</label>
+            <input type="date" name="due_date" required>
+
+            <button type="submit">
+                ➕ Create Assignment
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
